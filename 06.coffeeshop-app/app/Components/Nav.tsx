@@ -6,33 +6,21 @@ import Link from "next/link";
 import { useState } from "react";
 import CartModal from "./CartModal";
 import { useProductsContext } from '../Context/CartContext';
-import { useRouter } from "next/navigation";
-import { FaUser } from "react-icons/fa";
-import {useAuthState} from "react-firebase-hooks/auth"
-import {auth} from "../db/firebaseConfig"
+
+
+
 
 export default function Nav() {
 
+
   const [cartModalOpen, setCartModalOpen] = useState(false);
-  const { products} = useProductsContext();
-  const router = useRouter();
-
-  const [user] = useAuthState(auth)
-
+  
   const handleCartModal = () => {
     setCartModalOpen(!cartModalOpen);
   };
-
+  
+  const { products} = useProductsContext();
   const totalProductCount = products.reduce((totalCount, product) => totalCount + product.quantityProduct, 0);
-
-
-  const goToDashboard = ()=> {
-    if(user){
-      router.push("Dashboard")
-    }else {
-      router.push("Sign-in")
-    }
-  }
 
 
 
@@ -54,11 +42,7 @@ export default function Nav() {
             <FaCartShopping />
           </button>
 
-          <button
-            onClick={goToDashboard}
-            className="p-2 flex items-center justify-center rounded-full w-8 h-8 hover:bg-gray-400 hover:text-white cursor-pointer relative">
-              <FaUser />
-          </button>
+          
         </div>
 
       <CartModal cartModalOpen={cartModalOpen} handleCartModal={handleCartModal}  />

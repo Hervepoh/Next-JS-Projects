@@ -1,14 +1,16 @@
 "use client"
 
 import Header from "./Components/Header";
+
+
 import { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../app/db/firebaseConfig'; 
 import {ProductsTypes} from "./Types/productsType"
 import Galerie from "./Components/Galerie";
-import Footer from "./Components/Footer";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Footer from "./Components/Footer";
 
 
 export default function Home() {
