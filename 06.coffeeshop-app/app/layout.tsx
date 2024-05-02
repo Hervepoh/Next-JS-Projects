@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-const inter = Inter({ subsets: ["latin"] });
-import Nav from "./components/Nav"
+import Nav from "./Components/Nav";
 
-// le fichier layout est utilisé pour créer une mise en page cohérente et réutilisable pour votre application web. C'est une approche courante dans de nombreux frameworks et bibliothèques JavaScript pour maintenir la structure et l'apparence de votre application.
+import { ProductsProvider } from './Context/CartContext';
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,12 +18,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-
     <html lang="en">
       <body className={inter.className}>
-      <Nav />
+      <ProductsProvider>
+        <Nav />
+   
         {children}
-        </body>
+    
+      </ProductsProvider>
+      </body>
     </html>
   );
 }
